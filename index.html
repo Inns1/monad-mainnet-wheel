@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monad Mainnet Wheel</title>
+  <meta property="og:title" content="Monad Mainnet Wheel" />
+  <meta property="og:image" content="https://Inns1.github.io/monad-mainnet-wheel/monad-preview.png" />
+  <meta name="fc:frame" content='{"version": "vNext", "button": {"title": "Крутить!", "action": {"type": "launch_frame", "name": "Monad Mainnet Wheel", "url": "https://Inns1.github.io/monad-mainnet-wheel"}}}' />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: sans-serif;
+      background: #1e1e2f;
+      color: white;
+    }
+
+    canvas {
+      border-radius: 50%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #7f5af0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="wheel" width="300" height="300"></canvas>
+  <button onclick="spin()">Крутить колесо</button>
+  <div id="result"></div>
+
+  <script>
+    const canvas = document.getElementById("wheel");
+    const ctx = canvas.getContext("2d");
+
+    const segments = [
+      "13 мая 2025",
+      "20 мая 2025",
+      "27 мая 2025",
+      "1 июня 2025",
+      "Уже вышел 🎉",
+      "Скоро 🚀"
+    ];
+
+    const colors = ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56", "#4bc0c0", "#9966ff"];
+    let currentAngle = 0;
+    let spinning = false;
+
+    function drawWheel() {
+      const radius = canvas.width / 2;
+      const angleStep = (2 * Math.PI) / segments.length;
+
+      for (let i = 0; i < segments.length; i++) {
+        ctx.beginPath();
+        ctx.moveTo(radius, radius);
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.arc(radius, radius, radius, currentAngle, currentAngle + angleStep);
+        ctx.lineTo(radius, radius);
+        ctx.fill();
+
+        ctx.save();
+        ctx.translate(radius, radius);
+        ctx.rotate(currentAngle + angleStep / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "white";
+        ctx
