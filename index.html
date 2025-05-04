@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monad Mainnet Wheel</title>
   <meta property="og:title" content="Monad Mainnet Wheel" />
   <meta property="og:image" content="https://Inns1.github.io/monad-mainnet-wheel/monad-preview.png" />
-  <meta name="fc:frame" content='{"version": "vNext", "button": {"title": "Крутить!", "action": {"type": "launch_frame", "name": "Monad Mainnet Wheel", "url": "https://Inns1.github.io/monad-mainnet-wheel"}}}' />
+  <meta name="fc:frame" content='{"version": "vNext", "button": {"title": "Spin the Wheel!", "action": {"type": "launch_frame", "name": "Monad Mainnet Wheel", "url": "https://Inns1.github.io/monad-mainnet-wheel"}}}' />
   <style>
     body {
       display: flex;
@@ -42,7 +42,7 @@
 </head>
 <body>
   <canvas id="wheel" width="300" height="300"></canvas>
-  <button onclick="spin()">Крутить колесо</button>
+  <button onclick="spin()">Spin the Wheel!</button>
   <div id="result"></div>
 
   <script>
@@ -50,12 +50,12 @@
     const ctx = canvas.getContext("2d");
 
     const segments = [
-      "13 мая 2025",
-      "20 мая 2025",
-      "27 мая 2025",
-      "1 июня 2025",
-      "Уже вышел 🎉",
-      "Скоро 🚀"
+      "May 17th, 2025",
+      "May 24th, 2025",
+      "May 31st, 2025",
+      "June 7th, 2025",
+      "Already Released 🎉",
+      "Coming Soon 🚀"
     ];
 
     const colors = ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56", "#4bc0c0", "#9966ff"];
@@ -79,4 +79,10 @@
         ctx.rotate(currentAngle + angleStep / 2);
         ctx.textAlign = "right";
         ctx.fillStyle = "white";
-        ctx
+        ctx.font = "14px sans-serif";
+        ctx.fillText(segments[i], radius - 10, 5);
+        ctx.restore();
+
+        currentAngle += angleStep;
+      }
+    }
